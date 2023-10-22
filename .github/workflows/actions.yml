@@ -38,7 +38,7 @@ jobs:
               run: |
                 docker build -t hemiaomiao/cicd:${{ github.sha }} .
             -
-             name: Set up QEMU
+             name: Set up QEMU1
              uses: docker/setup-qemu-action@v3
             -
              name: Set up Docker Buildx
