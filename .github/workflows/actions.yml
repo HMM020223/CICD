@@ -64,6 +64,10 @@ jobs:
                 COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
                 COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
                 DIGEST: ${{ steps.build-and-push.outputs.digest }}
-                
+            - name: Slack Notification
+              uses: rtCamp/action-slack-notify@v2
+              env:
+                SLACK_WEBHOOK: ${{ secrets.TEST_HOOK }}
+                SLACK_MESSAGE: "*Name*: He Miao\n *MatriculationNumber*: A0285896B\n *Email*: e1221708@u.nus.edu\n *Repository*: ${{ github.server_url }}/${{ github.repository }}\n *DockerHubURL*: https://hub.docker.com/r/hemiaomiao/cicd/tags"
           
         
