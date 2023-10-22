@@ -52,7 +52,7 @@ jobs:
              uses: docker/build-push-action@v5
              with:
                 push: true
-                tags: hemiaomiao/cicd:${{ github.sha }}
+                tags: hemiaomiao/cicd:aaaa1234
             - name: Sign image with a key
               run: |
                   cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}@${DIGEST}"
