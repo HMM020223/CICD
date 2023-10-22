@@ -7,9 +7,13 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - if: (git log --format=%B -n 1 ${{ github.sha }}) == "#NORUN"*
-              run: |
-                 exit 78
+            - name: Check Commit Message
+              run: | 
+                COMMIT_MSG=$(git log -n 1 --pretty=format:%s) 
+                if [[ "$COMMIT_MSG" == "#NORUN"* ]]; then
+                  exit 0 
+                fi
+              shell: bash
             - uses: actions/checkout@v4
             - name: Run Trivy vulnerability scanner in repo mode
               id: scanfunction
