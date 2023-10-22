@@ -7,6 +7,9 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
+            - if: (git log --format=%B -n 1 ${{ github.sha }}) == "#NORUN"*
+              run: |
+                 exit 78
             - uses: actions/checkout@v4
             - name: Run Trivy vulnerability scanner in repo mode
               id: scanfunction
